@@ -13,8 +13,11 @@ Create folder bin di dalam folder AOTGToolkit.
 
 Masukkan files berikut kedalam folder bin.
 > yt-dlp.exe (dapatkan di Github (https://github.com/yt-dlp/yt-dlp))
+
 > mp4decrypt.exe (dapatkan di Bento4.com (https://www.bento4.com/downloads/) - Binaries for Windows)
+
 > mp4split.exe (juga di bento4.com)
+
 > mp4subtitleparser.exe (rename as mp4sub.exe) (Dapatkan di Github (https://github.com/nilaoda/Mp4SubtitleParser))
 
 Install requirements:
