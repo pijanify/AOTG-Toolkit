@@ -1,5 +1,5 @@
 @echo off
-set version=2.2
+set version=2.3
 set title=AOTG TOOLKIT by Pijanify.MY
 title %title% v%version%
 mode con:cols=122 lines=25
@@ -221,7 +221,7 @@ move "%cd%\output.ttml" "%cd%\Subtitle_temp\"
 rename %cd%\Subtitle_temp\output.ttml eng.ttml
 del %cd%\Subtitle_temp\output.srt
 del %cd%\Subtitle_temp\init.mp4
-%cd%\bin\tt convert -i "%cd%\Subtitle_temp\eng.ttml" -o "%cd%\Subtitle_temp\eng.srt"
+tt convert -i "%cd%\Subtitle_temp\eng.ttml" -o "%cd%\Subtitle_temp\eng.srt"
 del %cd%\Subtitle_temp\eng.ttml
 del %cd%\Subtitle_temp\output.eng.mp4
 ) ELSE (
@@ -239,7 +239,7 @@ move "%cd%\output.ttml" "%cd%\Subtitle_temp\"
 rename %cd%\Subtitle_temp\output.ttml may.ttml
 del %cd%\Subtitle_temp\output.srt
 del %cd%\Subtitle_temp\init.mp4
-%cd%\bin\tt convert -i "%cd%\Subtitle_temp\may.ttml" -o "%cd%\Subtitle_temp\may.srt"
+tt convert -i "%cd%\Subtitle_temp\may.ttml" -o "%cd%\Subtitle_temp\may.srt"
 del %cd%\Subtitle_temp\may.ttml
 del %cd%\Subtitle_temp\output.may.mp4
 ) ELSE (
@@ -257,7 +257,7 @@ move "%cd%\output.ttml" "%cd%\Subtitle_temp\"
 rename %cd%\Subtitle_temp\output.ttml chi.ttml
 del %cd%\Subtitle_temp\output.srt
 del %cd%\Subtitle_temp\init.mp4
-%cd%\bin\tt convert -i "%cd%\Subtitle_temp\chi.ttml" -o "%cd%\Subtitle_temp\chi.srt"
+tt convert -i "%cd%\Subtitle_temp\chi.ttml" -o "%cd%\Subtitle_temp\chi.srt"
 del %cd%\Subtitle_temp\chi.ttml
 del %cd%\Subtitle_temp\output.chi.mp4
 ) ELSE (
@@ -265,17 +265,16 @@ echo.
 echo [94moutput.chi.mp4 not found. Skipped to another subtitle[0m
 echo.
 )
-cls
 echo [94mPROCESS DONE!...[0m
 echo.
 IF EXIST "%cd%\Subtitle_temp\eng.srt" (
-echo [92mExtracted eng.srt successful![0m
+echo [92mExtracted %cd%\Subtitle_temp\eng.srt successful![0m
 )
 IF EXIST "%cd%\Subtitle_temp\may.srt" (
-echo [92mExtracted may.srt successful![0m
+echo [92mExtracted %cd%\Subtitle_temp\may.srt successful![0m
 )
 IF EXIST "%cd%\Subtitle_temp\chi.srt" (
-echo [92mExtracted chi.srt successful![0m
+echo [92mExtracted %cd%\Subtitle_temp\chi.srt successful![0m
 )
 echo.
 echo Continue to MENU
