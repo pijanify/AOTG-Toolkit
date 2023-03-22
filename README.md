@@ -1,3 +1,5 @@
+# Deprecated - Use this tool https://github.com/nilaoda/N_m3u8DL-RE
+
 # AOTG-Toolkit
 AOTG Toolkit - Made by Ripper for Ripper
 
