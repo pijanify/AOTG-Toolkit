@@ -1,8 +1,11 @@
 @echo off
-set version=2.3
+set version=2.4
 set title=AOTG TOOLKIT by Pijanify.MY
 title %title% v%version%
 mode con:cols=122 lines=25
+
+:: Version 2.4
+:: Added function for subtitle merge
 
 :: THIS IS FOR REMOTE UPDATE CHECK. SKIP THIS
 :: DELETED FOR FUTURE UPDATE. SKIP THIS
@@ -284,7 +287,7 @@ GOTO MENU_START
 ::INTERFACE MUX/MERGE SUBTITLE INTO VIDEO
 :MENU_OPTION_E
 cls
-mode con:cols=90 lines=15
+mode con:cols=145 lines=15
 
 echo 			[92m+===============================================+[0m
 echo 			[92m.          [94m%title%[0m     v%version% [92m.[0m
@@ -313,17 +316,133 @@ IF /I %MUX_OPTION%==G GOTO MUX_OPTION_G
 IF /I %MUX_OPTION%==H GOTO MUX_OPTION_H
 IF /I %INPUT%==false GOTO DEFAULT
 
-
+::MUX MENU
 :MUX_OPTION_A
-echo Hello
+set INPUT=true
+echo Type "1" to go MENU or "2" to exit.
+echo.
+echo Masukkan filename penuh (Contoh: The.Nun.2023.1080p.AOTG.WEB-DL.DD5.1.H264-NOGRP)
+set /p tajuk=
+IF /i "%tajuk%" == "1" GOTO MENU_START
+IF /i "%tajuk%" == "2" GOTO MENU_OPTION_J
+echo Muxing English subtitle....
+ffmpeg -v quiet -stats -i  %cd%\Output\done.mp4 -i  %cd%\Subtitle_temp\eng.srt -map 0 -map 1 -c copy -metadata:s:s:0 language=eng %cd%\Done\%tajuk%.mkv
+echo Done!
+timeout 1 > NUL
+start %windir%\explorer.exe %cd%\Done\
+echo Redirecting to Menu...
 timeout 5 > NUL
 GOTO MENU_START
 
 :MUX_OPTION_B
-echo B
+set INPUT=true
+echo Type "1" to go MENU or "2" to exit.
+echo.
+echo Masukkan filename penuh (Contoh: The.Nun.2023.1080p.AOTG.WEB-DL.DD5.1.H264-NOGRP)
+set /p tajuk=
+IF /i "%tajuk%" == "1" GOTO MENU_START
+IF /i "%tajuk%" == "2" GOTO MENU_OPTION_J
+echo Muxing Malay subtitle....
+ffmpeg -v quiet -stats -i  %cd%\Output\done.mp4 -i  %cd%\Subtitle_temp\may.srt -map 0 -map 1 -c copy -metadata:s:s:0 language=may %cd%\Done\%tajuk%.mkv
+echo Done!
+timeout 1 > NUL
+start %windir%\explorer.exe %cd%\Done\
+echo Redirecting to Menu...
 timeout 5 > NUL
 GOTO MENU_START
 
+:MUX_OPTION_C
+set INPUT=true
+echo Type "1" to go MENU or "2" to exit.
+echo.
+echo Masukkan filename penuh (Contoh: The.Nun.2023.1080p.AOTG.WEB-DL.DD5.1.H264-NOGRP)
+set /p tajuk=
+IF /i "%tajuk%" == "1" GOTO MENU_START
+IF /i "%tajuk%" == "2" GOTO MENU_OPTION_J
+echo Muxing Chinese subtitle....
+ffmpeg -v quiet -stats -i  %cd%\Output\done.mp4 -i  %cd%\Subtitle_temp\chi.srt -map 0 -map 1 -c copy -metadata:s:s:0 language=chi %cd%\Done\%tajuk%.mkv
+echo Done!
+timeout 1 > NUL
+start %windir%\explorer.exe %cd%\Done\
+echo Redirecting to Menu...
+timeout 5 > NUL
+GOTO MENU_START
+
+:MUX_OPTION_D
+set INPUT=true
+echo Type "1" to go MENU or "2" to exit.
+echo.
+echo Masukkan filename penuh (Contoh: The.Nun.2023.1080p.AOTG.WEB-DL.DD5.1.H264-NOGRP)
+set /p tajuk=
+IF /i "%tajuk%" == "1" GOTO MENU_START
+IF /i "%tajuk%" == "2" GOTO MENU_OPTION_J
+echo Muxing English+Malay subtitle....
+ffmpeg -v quiet -stats -i  %cd%\Output\done.mp4 -i  %cd%\Subtitle_temp\eng.srt -i %cd%\Subtitle_temp\may.srt -map 0 -map 1 -map 2 -c copy -metadata:s:s:0 language=eng -metadata:s:s:1 language=may %cd%\Done\%tajuk%.mkv
+echo Done!
+timeout 1 > NUL
+start %windir%\explorer.exe %cd%\Done\
+echo Redirecting to Menu...
+timeout 5 > NUL
+GOTO MENU_START
+
+:MUX_OPTION_E
+set INPUT=true
+echo Type "1" to go MENU or "2" to exit.
+echo.
+echo Masukkan filename penuh (Contoh: The.Nun.2023.1080p.AOTG.WEB-DL.DD5.1.H264-NOGRP)
+set /p tajuk=
+IF /i "%tajuk%" == "1" GOTO MENU_START
+IF /i "%tajuk%" == "2" GOTO MENU_OPTION_J
+echo Muxing English+Chinese subtitle....
+ffmpeg -v quiet -stats -i  %cd%\Output\done.mp4 -i  %cd%\Subtitle_temp\eng.srt -i %cd%\Subtitle_temp\chi.srt -map 0 -map 1 -map 2 -c copy -metadata:s:s:0 language=eng -metadata:s:s:1 language=chi %cd%\Done\%tajuk%.mkv
+echo Done!
+timeout 1 > NUL
+start %windir%\explorer.exe %cd%\Done\
+echo Redirecting to Menu...
+timeout 5 > NUL
+GOTO MENU_START
+
+:MUX_OPTION_F
+set INPUT=true
+echo Type "1" to go MENU or "2" to exit.
+echo.
+echo Masukkan filename penuh (Contoh: The.Nun.2023.1080p.AOTG.WEB-DL.DD5.1.H264-NOGRP)
+set /p tajuk=
+IF /i "%tajuk%" == "1" GOTO MENU_START
+IF /i "%tajuk%" == "2" GOTO MENU_OPTION_J
+echo Muxing Chinese+Malay subtitle....
+ffmpeg -v quiet -stats -i  %cd%\Output\done.mp4 -i  %cd%\Subtitle_temp\chi.srt -i %cd%\Subtitle_temp\may.srt -map 0 -map 1 -map 2 -c copy -metadata:s:s:0 language=chi -metadata:s:s:1 language=may %cd%\Done\%tajuk%.mkv
+echo Done!
+timeout 1 > NUL
+start %windir%\explorer.exe %cd%\Done\
+echo Redirecting to Menu...
+timeout 5 > NUL
+GOTO MENU_START
+
+:MUX_OPTION_G
+set INPUT=true
+echo Type "1" to go MENU or "2" to exit.
+echo.
+echo Masukkan filename penuh (Contoh: The.Nun.2023.1080p.AOTG.WEB-DL.DD5.1.H264-NOGRP)
+set /p tajuk=
+IF /i "%tajuk%" == "1" GOTO MENU_START
+IF /i "%tajuk%" == "2" GOTO MENU_OPTION_J
+echo Muxing English+Malay+Chinese subtitle....
+ffmpeg -v quiet -stats -i  %cd%\Output\done.mp4 -i  %cd%\Subtitle_temp\eng.srt -i %cd%\Subtitle_temp\may.srt -i %cd%\Subtitle_temp\chi.srt -map 0 -map 1 -map 2 -map 3 -c copy -metadata:s:s:0 language=eng -metadata:s:s:1 language=may -metadata:s:s:2 language=chi %cd%\Done\%tajuk%.mkv
+echo Done!
+timeout 1 > NUL
+start %windir%\explorer.exe %cd%\Done\
+echo Redirecting to Menu...
+timeout 5 > NUL
+GOTO MENU_START
+
+:MUX_OPTION_H
+echo H
+timeout 5 > NUL
+GOTO MENU_START
+
+
+::MENU
 :RESTART_TO_MENU
 GOTO MENU_START
 
