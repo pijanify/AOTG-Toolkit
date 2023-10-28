@@ -437,8 +437,6 @@ timeout 5 > NUL
 GOTO MENU_START
 
 :MUX_OPTION_H
-echo H
-timeout 5 > NUL
 GOTO MENU_START
 
 
