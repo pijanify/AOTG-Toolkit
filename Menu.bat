@@ -1,11 +1,8 @@
 @echo off
-set version=2.4
+set version=2.3
 set title=AOTG TOOLKIT by Pijanify.MY
 title %title% v%version%
 mode con:cols=122 lines=25
-
-:: Version 2.4
-:: Added function for subtitle merge
 
 :: THIS IS FOR REMOTE UPDATE CHECK. SKIP THIS
 :: DELETED FOR FUTURE UPDATE. SKIP THIS
@@ -27,6 +24,7 @@ set "MENU_OPTION_H_INPUT="
 set "MENU_OPTION_I_INPUT="
 set "MENU_OPTION_J_INPUT="
 set "MENU_OPTION_K_INPUT="
+set "MENU_OPTION_L_INPUT="
 
 echo 				     [92m+===============================================+[0m
 echo 				     [92m.          [94m%title%[0m     v%version% [92m.[0m
@@ -41,8 +39,9 @@ echo 				     [92m.  [91mF)[0m SET METADATA/MEDIAINFO INTO VIDEO         [92
 echo 				     [92m.  [91mG)[0m HELP! - BACA INI                          [92m.[0m
 echo 				     [92m.  [91mH)[0m INSTALL REQUIREMENTS FIRST!               [92m.[0m
 echo 				     [92m.  [91mI)[0m CHECK FOR UPDATES                         [92m.[0m
-echo 				     [92m.  [91mJ)[0m EXIT                                      [92m.[0m
+echo 				     [92m.  [91mJ)[0m DELETE ALL TEMP FILES                     [92m.[0m
 echo 				     [92m.  [91mK)[0m CREDITS                                   [92m.[0m
+echo 				     [92m.  [91mL)[0m EXIT                                      [92m.[0m
 echo 				     [92m.                                               .[0m
 echo 				     [92m+===============================================+[0m
 
@@ -58,6 +57,7 @@ IF /I %MENU_OPTION%==H GOTO MENU_OPTION_H
 IF /I %MENU_OPTION%==I GOTO MENU_OPTION_I
 IF /I %MENU_OPTION%==J GOTO MENU_OPTION_J
 IF /I %MENU_OPTION%==K GOTO MENU_OPTION_K
+IF /I %MENU_OPTION%==L GOTO MENU_OPTION_L
 IF /I %MENU_OPTION%==R GOTO MENU_OPTION_R
 IF /I %INPUT%==false GOTO DEFAULT
 
@@ -122,11 +122,11 @@ echo Decrypting VIDEO and AUDIO
 %cd%\bin\mp4decrypt --show-progress --key %key% %cd%\downloaded_temp\encrypted_audio.m4a decrypted_temp\dec.m4a
 echo Merging VIDEO and AUDIO
 ffmpeg -v quiet -stats -i decrypted_temp\dec.mp4 -i decrypted_temp\dec.m4a -c copy Output\done.mp4
-echo [94mDelete temp file?[0m
-del decrypted_temp\*.*
+::echo [94mDelete temp file?[0m
+::del decrypted_temp\*.*
+::del %cd%\downloaded_temp\*.*
 echo Output: %cd%\Output\done.mp4
 echo PROCESS DONE!...
-echo Continue to MENU
 pause
 GOTO MENU_START
 
@@ -469,6 +469,14 @@ pause
 GOTO MENU_START
 
 :MENU_OPTION_J
+echo Deleting all temp files...
+::for %d in (decrypted_temp\*.* downloaded_temp\*.*) do del "%%d"
+del %cd%\decrypted_temp\*.* && del %cd%\downloaded_temp\*.*
+echo Done!
+pause
+GOTO MENU_START
+
+:MENU_OPTION_L
 exit /b
 
 :MENU_OPTION_K
